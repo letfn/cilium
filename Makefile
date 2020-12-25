@@ -34,6 +34,7 @@ policy:
 
 status:
 	@docker-compose exec cilium cilium status --all-health; echo
+	@docker-compose exec cilium hubble status; echo
 	@docker-compose exec cilium cilium node list; echo
 
 observe:
