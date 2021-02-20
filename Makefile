@@ -3,13 +3,6 @@ SHELL := /bin/bash
 menu:
 	@perl -ne 'printf("%10s: %s\n","$$1","$$2") if m{^([\w+-]+):[^#]+#\s(.+)$$}' Makefile
 
-setup:
-	$(MAKE) once up
-
-dummy:
-	docker run --rm -i --privileged --network=host --pid=host alpine \
-		nsenter -t 1 -m -u -n -i -- bash -c "ip link add dummy0 type dummy; ip addr add 169.254.32.1/32 dev dummy0; ip link set dev dummy0 up"
-
 logs:
 	docker-compose logs -f
 
