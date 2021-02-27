@@ -7,7 +7,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/run/docker/netns:/var/run/docker/netns
       - /sys/fs/bpf:/sys/fs/bpf
-      - ${CILIUM_MOUNT}/cilium:/var/run/cilium
+      - ${CILIUM_MOUNT:./mnt}/cilium:/var/run/cilium
       - env_cilium:/secrets
     network_mode: "host"
     cap_add:
