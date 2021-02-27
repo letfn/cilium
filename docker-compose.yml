@@ -7,7 +7,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/run/docker/netns:/var/run/docker/netns
       - /sys/fs/bpf:/sys/fs/bpf
-      - ./etc/data/cilium:/var/run/cilium
+      - ${CILIUM_MOUNT}/cilium:/var/run/cilium
     network_mode: "host"
     cap_add:
       - "NET_ADMIN"
@@ -20,7 +20,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /run/docker/plugins:/run/docker/plugins
-      - ./etc/data/cilium:/var/run/cilium
+      - ${CILIUM_MOUNT}/cilium:/var/run/cilium
     network_mode: "host"
     cap_add:
       - "NET_ADMIN"
