@@ -9,7 +9,7 @@ services:
       - /var/run/docker/netns:/var/run/docker/netns
       - /sys/fs/bpf:/sys/fs/bpf
       - ./etc/data/cilium:/var/run/cilium
-      - kitt_cilium:/secrets
+      - env_cilium:/secrets
     network_mode: "host"
     cap_add:
       - "NET_ADMIN"
@@ -33,5 +33,5 @@ services:
     restart: always
 
 volumes:
-  kitt_cilium:
+  env_cilium:
     external: true
