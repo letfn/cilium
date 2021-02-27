@@ -2,8 +2,7 @@ version: '3.7'
 
 services:
   cilium:
-    image: docker.io/cilium/cilium:v1.9.4
-    command: cilium-agent --ipv4-range ${KITT_NETWORK} --kvstore consul --kvstore-opt consul.address=${CONSUL_IP}:8500 --enable-ipv6=false --enable-hubble=false --enable-policy=default --ipv4-node=${NODE_IP}
+    image: defn/cilium
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/run/docker/netns:/var/run/docker/netns
@@ -17,8 +16,7 @@ services:
     privileged: true
     restart: always
   plugin:
-    image: docker.io/cilium/docker-plugin:v1.9.4
-    command: cilium-docker
+    image: defn/cilium-docker
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /run/docker/plugins:/run/docker/plugins

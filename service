@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+function main {
+  source /secrets/.env
+
+  exec cilium-agent \
+    --ipv4-range "${KITT_NETWORK}" \
+    --kvstore consul \
+    --kvstore-opt consul.address="${CONSUL_IP}:8500" \
+    --enable-ipv6=false \
+    --enable-hubble=false \
+    --enable-policy=default \
+    --ipv4-node="${NODE_IP}" "$@"
+}
+
+main "$@"

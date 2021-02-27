@@ -15,6 +15,10 @@ down:
 up:
 	docker-compose up -d --remove-orphans
 
+build: # build defn/cilium
+	docker build -t defn/cilium .
+	docker build -t defn/cilium-docker -f Dockerfile.docker .
+
 once:
 	docker run --rm -i --privileged --network=host --pid=host cilium/cilium \
 		iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
