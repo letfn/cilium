@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 function main {
+  set -a
   source /secrets/.env
+  set +a
 
   exec cilium-agent \
     --ipv4-range "${KITT_NETWORK}" \
