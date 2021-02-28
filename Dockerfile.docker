@@ -1,0 +1,1 @@
+FROM docker.io/cilium/docker-plugin:v1.9.4

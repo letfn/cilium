@@ -15,6 +15,10 @@ down:
 up:
 	docker-compose up -d --remove-orphans
 
+build: # build defn/cilium
+	docker build -t defn/cilium .
+	docker build -t defn/cilium-docker -f Dockerfile.docker .
+
 once:
 	docker run --rm -i --privileged --network=host --pid=host cilium/cilium \
 		iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -41,3 +45,6 @@ dropped:
 dropped-udp:
 	@docker-compose exec cilium hubble observe -f -j --verdict DROPPED --protocol udp\
 		|	while read -r a; do echo "$$a" | jq . | perl -pe 's{$$}{\r}'; echo; echo; echo; done
+
+env:
+	docker run --rm -v env_cilium:/secrets alpine cat /secrets/.env > .env
